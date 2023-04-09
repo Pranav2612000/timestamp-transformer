@@ -1,6 +1,6 @@
 {
-  "short_name": "<app short name>",
-  "name": "<app name>",
+  "short_name": "timestamp transformer",
+  "name": "timestamp transformer",
   "description": "<app description>",
   "version": "0.0.0",
   "manifest_version": 3,
