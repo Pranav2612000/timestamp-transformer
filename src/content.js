@@ -1,4 +1,4 @@
-import { isTimestamp } from "./service/Timestamp";
+import { isTimestamp, transformTimestamp } from "./service/Timestamp";
 
 function loadContentScript() {
   console.log("Content script loaded");
@@ -16,7 +16,11 @@ function loadContentScript() {
 
       words.forEach((word) => {
         if (isTimestamp(word)) {
-          console.log(word);
+          const transformedTimestamp = transformTimestamp(word);
+          const regex = new RegExp(`${word}`, "gi");
+          const formattedWord = word.replace(regex, `${transformedTimestamp}`);
+          console.log({ word, regex, formattedWord });
+          element.replaceChild(document.createTextNode(formattedWord), node);
         }
       });
     });
