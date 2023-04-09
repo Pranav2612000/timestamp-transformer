@@ -12,7 +12,7 @@ function loadContentScript() {
         return;
       }
       const text = node.nodeValue;
-      const words = text.split(" ");
+      const words = text.replace(/\n/g, " ").split(" ");
 
       words.forEach((word) => {
         if (isTimestamp(word)) {
