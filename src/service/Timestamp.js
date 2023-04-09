@@ -14,4 +14,6 @@ export function isTimestamp(string) {
   return true;
 }
 
-export function transformTimestamp() {}
+export function transformTimestamp(timestamp) {
+  return timestamp.toLocaleString();
+}
