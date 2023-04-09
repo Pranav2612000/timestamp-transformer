@@ -20,5 +20,11 @@
   "background": {
     "service_worker": "static/js/background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["static/js/content.js"]
+    }
+  ],
   "permissions": []
 }
