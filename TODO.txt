@@ -1,0 +1,5 @@
+- Allow user to choose minimum and maximum dates for auto changing timestamps
+- Allow user to easily undo a change
+- Allow user to configure date format of converted timestamps
+- Easily show actual timestamp value to user
+- Support for 10 digit timestamps
