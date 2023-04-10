@@ -11,7 +11,7 @@ export function isTimestamp(string) {
     return false;
   }
 
-  return true;
+  return timestamp;
 }
 
 export function transformTimestamp(timestamp) {
