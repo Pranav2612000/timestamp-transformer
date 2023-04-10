@@ -19,8 +19,7 @@ function loadContentScript() {
         if (timestamp) {
           const transformedTimestamp = transformTimestamp(timestamp);
           const regex = new RegExp(`${word}`, "gi");
-          const formattedWord = word.replace(regex, `${transformedTimestamp}`);
-          console.log({ word, regex, formattedWord });
+          const formattedWord = text.replace(regex, `${transformedTimestamp}`);
           element.replaceChild(document.createTextNode(formattedWord), node);
         }
       });
