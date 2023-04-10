@@ -15,8 +15,9 @@ function loadContentScript() {
       const words = text.replace(/\n/g, " ").split(" ");
 
       words.forEach((word) => {
-        if (isTimestamp(word)) {
-          const transformedTimestamp = transformTimestamp(word);
+        const timestamp = isTimestamp(word);
+        if (timestamp) {
+          const transformedTimestamp = transformTimestamp(timestamp);
           const regex = new RegExp(`${word}`, "gi");
           const formattedWord = word.replace(regex, `${transformedTimestamp}`);
           console.log({ word, regex, formattedWord });
