@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     "no-underscore-dangle": "off",
     "no-new": "off",
+    "no-param-reassign": "off",
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
     "class-methods-use-this": ["error", { enforceForClassFields: false }],
   },
