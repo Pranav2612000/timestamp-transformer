@@ -7,3 +7,7 @@ export function createSpanElement(text) {
 export function wrapTextInSpanElement(text) {
   return `<span>${text}</span>`;
 }
+
+export function getTimestampElement(timestamp) {
+  return wrapTextInSpanElement(timestamp);
+}
