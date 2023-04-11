@@ -1,4 +1,5 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
+import createSpanElement from "./service/DOM";
 
 function loadContentScript() {
   console.log("Content script loaded");
@@ -20,7 +21,7 @@ function loadContentScript() {
           const transformedTimestamp = transformTimestamp(timestamp);
           const regex = new RegExp(`${word}`, "gi");
           const formattedWord = text.replace(regex, `${transformedTimestamp}`);
-          element.replaceChild(document.createTextNode(formattedWord), node);
+          element.replaceChild(createSpanElement(formattedWord), node);
         }
       });
     });
