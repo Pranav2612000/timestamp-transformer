@@ -5,9 +5,11 @@ export function createSpanElement(text) {
 }
 
 export function wrapTextInSpanElement(text) {
-  return `<span>${text}</span>`;
+  const wrapper = createSpanElement(text);
+  return wrapper;
 }
 
 export function getTimestampElement(timestamp) {
-  return wrapTextInSpanElement(timestamp);
+  const timestampElement = wrapTextInSpanElement(timestamp);
+  return timestampElement.outerHTML;
 }
