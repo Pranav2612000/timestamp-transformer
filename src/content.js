@@ -1,5 +1,5 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
-import { createSpanElement } from "./service/DOM";
+import { createSpanElement, getTimestampElement } from "./service/DOM";
 
 function loadContentScript() {
   console.log("Content script loaded");
@@ -19,9 +19,14 @@ function loadContentScript() {
         const timestamp = isTimestamp(word);
         if (timestamp) {
           const transformedTimestamp = transformTimestamp(timestamp);
+          const transformedTimestampElement =
+            getTimestampElement(transformedTimestamp);
           const regex = new RegExp(`${word}`, "gi");
-          const formattedWord = text.replace(regex, `${transformedTimestamp}`);
-          element.replaceChild(createSpanElement(formattedWord), node);
+          const formattedHTML = text.replace(
+            regex,
+            transformedTimestampElement
+          );
+          element.replaceChild(createSpanElement(formattedHTML), node);
         }
       });
     });
