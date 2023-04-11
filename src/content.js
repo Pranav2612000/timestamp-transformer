@@ -1,5 +1,5 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
-import createSpanElement from "./service/DOM";
+import { createSpanElement } from "./service/DOM";
 
 function loadContentScript() {
   console.log("Content script loaded");
