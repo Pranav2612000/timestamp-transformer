@@ -9,7 +9,13 @@ export function wrapTextInSpanElement(text) {
   return wrapper;
 }
 
+export function styleTimestampElementWrapper(element) {
+  element.style.border = "1px dotted chocolate";
+}
+
 export function getTimestampElement(timestamp) {
   const timestampElement = wrapTextInSpanElement(timestamp);
+  styleTimestampElementWrapper(timestampElement);
+
   return timestampElement.outerHTML;
 }
