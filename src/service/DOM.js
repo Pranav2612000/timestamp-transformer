@@ -4,8 +4,13 @@ export function createSpanElement(text) {
   return element;
 }
 
-export function wrapTextInSpanElement(text) {
+export function wrapTextInSpanElement(text, attributes = {}) {
   const wrapper = createSpanElement(text);
+
+  Object.keys(attributes).forEach((key) => {
+    wrapper[key] = attributes[key];
+  });
+
   return wrapper;
 }
 
@@ -16,7 +21,9 @@ export function styleTimestampElementWrapper(element) {
 }
 
 export function addTooltipToElement(element, tooltipText) {
-  const tooltipElement = wrapTextInSpanElement(tooltipText);
+  const tooltipElement = wrapTextInSpanElement(tooltipText, {
+    className: "tt-tooltip",
+  });
   console.log(tooltipElement);
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
