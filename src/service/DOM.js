@@ -15,9 +15,16 @@ export function styleTimestampElementWrapper(element) {
   element.style.border = "1px dotted chocolate";
 }
 
-export function getTimestampElement(timestamp) {
-  const timestampElement = wrapTextInSpanElement(timestamp);
+export function addTooltipToElement(element, tooltipText) {
+  const tooltipElement = wrapTextInSpanElement(tooltipText);
+  console.log(tooltipElement);
+  element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
+}
+
+export function getTimestampElement(date, timestamp) {
+  const timestampElement = wrapTextInSpanElement(date);
   styleTimestampElementWrapper(timestampElement);
+  addTooltipToElement(timestampElement, timestamp);
 
   return timestampElement.outerHTML;
 }
