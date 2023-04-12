@@ -24,7 +24,6 @@ export function addTooltipToElement(element, tooltipText) {
   const tooltipElement = wrapTextInSpanElement(tooltipText, {
     className: "tt-tooltip",
   });
-  console.log(tooltipElement);
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
 
