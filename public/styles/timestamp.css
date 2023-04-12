@@ -1,0 +1,7 @@
+.tt-container {
+  display: inline-block;
+}
+
+.tt-container:hover {
+  cursor: pointer
+}
