@@ -19,8 +19,10 @@ function loadContentScript() {
         const timestamp = isTimestamp(word);
         if (timestamp) {
           const transformedTimestamp = transformTimestamp(timestamp);
-          const transformedTimestampElement =
-            getTimestampElement(transformedTimestamp);
+          const transformedTimestampElement = getTimestampElement(
+            transformedTimestamp,
+            timestamp
+          );
           const regex = new RegExp(`${word}`, "gi");
           const formattedHTML = text.replace(
             regex,
