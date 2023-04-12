@@ -10,6 +10,8 @@ export function wrapTextInSpanElement(text) {
 }
 
 export function styleTimestampElementWrapper(element) {
+  element.className = "tt-container";
+
   element.style.border = "1px dotted chocolate";
 }
 
