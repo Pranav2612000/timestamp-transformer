@@ -13,10 +13,13 @@
 .tt-tooltip {
   display: none;
   background: #C8C8C8;
-  margin-left: 28px;
-  padding: 10px;
+
   position: absolute;
+  top: 0px;
+  left: 0px;
+
   z-index: 1000;
-  width: 200px;
-  height: 100px;
+  width: 100%;
+
+  text-align: center;
 }

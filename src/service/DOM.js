@@ -18,6 +18,7 @@ export function styleTimestampElementWrapper(element) {
   element.className = "tt-container";
 
   element.style.border = "1px dotted chocolate";
+  element.style.position = "relative";
 }
 
 export function addTooltipToElement(element, tooltipText) {
