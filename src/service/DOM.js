@@ -21,8 +21,13 @@ export function styleTimestampElementWrapper(element) {
   element.style.position = "relative";
 }
 
+export function addCrossIconElement() {
+  return "<i>❌</i>";
+}
+
 export function addTooltipToElement(element, tooltipText) {
-  const tooltipElement = wrapTextInSpanElement(tooltipText, {
+  const tooltipCrossIcon = addCrossIconElement();
+  const tooltipElement = wrapTextInSpanElement(tooltipCrossIcon + tooltipText, {
     className: "tt-tooltip",
   });
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
