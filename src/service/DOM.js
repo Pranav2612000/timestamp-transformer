@@ -21,15 +21,15 @@ export function styleTimestampElementWrapper(element) {
   element.style.position = "relative";
 }
 
-export function addCrossIconElement() {
-  return "<i>❌</i>";
-}
-
 export function addTooltipToElement(element, tooltipText) {
-  const tooltipCrossIcon = addCrossIconElement();
-  const tooltipElement = wrapTextInSpanElement(tooltipCrossIcon + tooltipText, {
-    className: "tt-tooltip",
-  });
+  const clearInstructionElement = wrapTextInSpanElement(
+    "Click to revert change",
+    { className: "tt-clear-tooltip" }
+  );
+  const tooltipElement = wrapTextInSpanElement(
+    tooltipText + clearInstructionElement.outerHTML,
+    { className: "tt-tooltip" }
+  );
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
 
