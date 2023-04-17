@@ -1,5 +1,7 @@
 - Allow user to choose minimum and maximum dates for auto changing timestamps
-- Allow user to easily undo a change
 - Allow user to configure date format of converted timestamps
-- Easily show actual timestamp value to user
+- [DONE] Easily show actual timestamp value to user - Shown on hover
+- Allow user to easily undo a change
 - Support for 10 digit timestamps
+- Don't change inside code tag
+- Transform date to a smaller size to not cause layout shift
