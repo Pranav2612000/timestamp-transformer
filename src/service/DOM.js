@@ -1,3 +1,7 @@
+const TT_CONTAINER_CLASS = "tt-container";
+const TT_TOOLTIP_CLASS = "tt-tooltip";
+const TT_CLEAR_TOOLTIP_CLASS = "tt-clear-tooltip";
+
 export function createSpanElement(text) {
   const element = document.createElement("span");
   element.innerHTML = text;
@@ -15,7 +19,7 @@ export function wrapTextInSpanElement(text, attributes = {}) {
 }
 
 export function styleTimestampElementWrapper(element) {
-  element.className = "tt-container";
+  element.className = TT_CONTAINER_CLASS;
 
   element.style.border = "1px dotted chocolate";
   element.style.position = "relative";
@@ -24,11 +28,13 @@ export function styleTimestampElementWrapper(element) {
 export function addTooltipToElement(element, tooltipText) {
   const clearInstructionElement = wrapTextInSpanElement(
     "Click to revert change",
-    { className: "tt-clear-tooltip" }
+    { className: TT_CLEAR_TOOLTIP_CLASS }
   );
   const tooltipElement = wrapTextInSpanElement(
     tooltipText + clearInstructionElement.outerHTML,
-    { className: "tt-tooltip" }
+    {
+      className: TT_TOOLTIP_CLASS,
+    }
   );
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
