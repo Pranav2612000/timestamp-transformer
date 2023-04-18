@@ -37,12 +37,7 @@ function loadContentScript() {
             regex,
             transformedTimestampElement
           );
-          element.replaceChild(
-            wrapTextInSpanElement(formattedHTML, {
-              click: () => alert("Clicked"),
-            }),
-            node
-          );
+          element.replaceChild(wrapTextInSpanElement(formattedHTML), node);
         }
       });
     });
