@@ -39,10 +39,23 @@ export function addTooltipToElement(element, tooltipText) {
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
 
+export function createTooltipElementClickListener() {
+  document.querySelectorAll(`.${TT_TOOLTIP_CLASS}`).forEach((ele) => {
+    ele.addEventListener("click", (e) => {
+      e.stopPropagation();
+      alert("clicked");
+    });
+  });
+}
+
 export function getTimestampElement(date, timestamp) {
   const timestampElement = wrapTextInSpanElement(date);
   styleTimestampElementWrapper(timestampElement);
   addTooltipToElement(timestampElement, timestamp);
 
   return timestampElement.outerHTML;
+}
+
+export function createEventListeners() {
+  createTooltipElementClickListener();
 }

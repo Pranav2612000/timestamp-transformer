@@ -1,8 +1,13 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
-import { wrapTextInSpanElement, getTimestampElement } from "./service/DOM";
+import {
+  createEventListeners,
+  wrapTextInSpanElement,
+  getTimestampElement,
+} from "./service/DOM";
 
 function loadEventHandlers() {
   console.log("Load event handlers for handling events using delegation");
+  createEventListeners();
 }
 
 function loadContentScript() {
@@ -32,11 +37,18 @@ function loadContentScript() {
             regex,
             transformedTimestampElement
           );
-          element.replaceChild(wrapTextInSpanElement(formattedHTML), node);
+          element.replaceChild(
+            wrapTextInSpanElement(formattedHTML, {
+              click: () => alert("Clicked"),
+            }),
+            node
+          );
         }
       });
     });
   });
+
+  loadEventHandlers();
 }
 
 loadEventHandlers();
