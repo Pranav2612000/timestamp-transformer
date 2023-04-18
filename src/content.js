@@ -1,6 +1,10 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
 import { wrapTextInSpanElement, getTimestampElement } from "./service/DOM";
 
+function loadEventHandlers() {
+  console.log("Load event handlers for handling events using delegation");
+}
+
 function loadContentScript() {
   console.log("Content script loaded");
   const elements = Array.from(document.getElementsByTagName("*"));
@@ -35,4 +39,5 @@ function loadContentScript() {
   });
 }
 
+loadEventHandlers();
 loadContentScript();
