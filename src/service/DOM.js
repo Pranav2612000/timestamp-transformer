@@ -1,3 +1,5 @@
+import Utils from "./Utils";
+
 const TT_CONTAINER_CLASS = "tt-container";
 const TT_TOOLTIP_CLASS = "tt-tooltip";
 const TT_CLEAR_TOOLTIP_CLASS = "tt-clear-tooltip";
@@ -12,6 +14,20 @@ export function wrapTextInSpanElement(text, attributes = {}) {
   const wrapper = createSpanElement(text);
 
   Object.keys(attributes).forEach((key) => {
+    // Since dataset is a read-only property,
+    // we need to explicity set each value
+    if (key === "dataset") {
+      const dataAttributes = attributes[key];
+      if (!Utils.isObject(dataAttributes)) {
+        return;
+      }
+
+      Object.keys(dataAttributes).forEach((attr) => {
+        wrapper[key][attr] = dataAttributes[attr];
+      });
+      return;
+    }
+
     wrapper[key] = attributes[key];
   });
 
