@@ -1,5 +1,5 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
-import { createSpanElement, getTimestampElement } from "./service/DOM";
+import { wrapTextInSpanElement, getTimestampElement } from "./service/DOM";
 
 function loadContentScript() {
   console.log("Content script loaded");
@@ -28,7 +28,7 @@ function loadContentScript() {
             regex,
             transformedTimestampElement
           );
-          element.replaceChild(createSpanElement(formattedHTML), node);
+          element.replaceChild(wrapTextInSpanElement(formattedHTML), node);
         }
       });
     });
