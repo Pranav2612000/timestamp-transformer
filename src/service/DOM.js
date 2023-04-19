@@ -55,15 +55,6 @@ export function addTooltipToElement(element, tooltipText) {
   element.innerHTML = `${element.innerHTML}${tooltipElement.outerHTML}`;
 }
 
-export function createTooltipElementClickListener() {
-  document.querySelectorAll(`.${TT_TOOLTIP_CLASS}`).forEach((ele) => {
-    ele.addEventListener("click", (e) => {
-      e.stopPropagation();
-      alert("clicked");
-    });
-  });
-}
-
 export function getTimestampElement(date, timestamp) {
   const timestampElement = wrapTextInSpanElement(date, {
     dataset: { originalText: timestamp },
@@ -78,6 +69,15 @@ export function revertTimestampElementChange(timestampElement) {
   const timestamp = timestampElement.dataset.originalText;
 
   timestampElement.replaceWith(timestamp);
+}
+
+export function createTooltipElementClickListener() {
+  document.querySelectorAll(`.${TT_TOOLTIP_CLASS}`).forEach((ele) => {
+    ele.addEventListener("click", (e) => {
+      e.stopPropagation();
+      revertTimestampElementChange(e.target.parentElement);
+    });
+  });
 }
 
 export function createEventListeners() {
