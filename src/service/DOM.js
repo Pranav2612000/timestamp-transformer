@@ -74,6 +74,12 @@ export function getTimestampElement(date, timestamp) {
   return timestampElement.outerHTML;
 }
 
+export function revertTimestampElementChange(timestampElement) {
+  const timestamp = timestampElement.dataset.originalText;
+
+  timestampElement.replaceWith(timestamp);
+}
+
 export function createEventListeners() {
   createTooltipElementClickListener();
 }
