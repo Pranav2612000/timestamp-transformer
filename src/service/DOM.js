@@ -65,7 +65,9 @@ export function createTooltipElementClickListener() {
 }
 
 export function getTimestampElement(date, timestamp) {
-  const timestampElement = wrapTextInSpanElement(date);
+  const timestampElement = wrapTextInSpanElement(date, {
+    dataset: { originalText: timestamp },
+  });
   styleTimestampElementWrapper(timestampElement);
   addTooltipToElement(timestampElement, timestamp);
 
