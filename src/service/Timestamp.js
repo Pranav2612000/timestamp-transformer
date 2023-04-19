@@ -8,10 +8,23 @@ export function is13DigitTimestamp(timestamp) {
   return true;
 }
 
+export function is10DigitTimestamp(timestamp) {
+  timestamp *= 1000;
+  if (!(MIN_TIMESTAMP <= timestamp && timestamp <= MAX_TIMESTAMP)) {
+    return false;
+  }
+  return true;
+}
+
 export function isTimestamp(string) {
-  const timestamp = parseInt(string, 10);
+  let timestamp = parseInt(string, 10);
   if (Number.isNaN(timestamp)) {
     return false;
+  }
+
+  /* To allow support for 10 digit timestamps */
+  if (is10DigitTimestamp(timestamp)) {
+    timestamp *= 1000;
   }
 
   if (!is13DigitTimestamp(timestamp)) {
