@@ -37,7 +37,12 @@ function loadContentScript() {
             regex,
             transformedTimestampElement
           );
-          element.replaceChild(wrapTextInSpanElement(formattedHTML), node);
+          element.replaceChild(
+            wrapTextInSpanElement(formattedHTML, {
+              dataset: { originalText: text },
+            }),
+            node
+          );
         }
       });
     });
