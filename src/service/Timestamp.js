@@ -17,17 +17,12 @@ export function is10DigitTimestamp(timestamp) {
 }
 
 export function isTimestamp(string) {
-  let timestamp = parseInt(string, 10);
+  const timestamp = parseInt(string, 10);
   if (Number.isNaN(timestamp)) {
     return false;
   }
 
-  /* To allow support for 10 digit timestamps */
-  if (is10DigitTimestamp(timestamp)) {
-    timestamp *= 1000;
-  }
-
-  if (!is13DigitTimestamp(timestamp)) {
+  if (!is13DigitTimestamp(timestamp) && !is10DigitTimestamp(timestamp)) {
     return false;
   }
 
@@ -35,5 +30,9 @@ export function isTimestamp(string) {
 }
 
 export function transformTimestamp(timestamp) {
+  if (is10DigitTimestamp) {
+    return new Date(timestamp * 1000).toLocaleString();
+  }
+
   return new Date(timestamp).toLocaleString();
 }
