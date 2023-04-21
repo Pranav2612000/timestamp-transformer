@@ -9,10 +9,6 @@
     "48": "logo.png",
     "128": "logo.png"
   },
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
   "content_scripts": [
     {
       "matches": ["https://*/*"],
