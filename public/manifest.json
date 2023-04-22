@@ -20,5 +20,7 @@
     "page": "index.html",
     "open_in_tab": false
   },
-  "permissions": []
+  "permissions": [
+    "storage"
+  ]
 }
