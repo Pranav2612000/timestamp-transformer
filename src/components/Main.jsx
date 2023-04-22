@@ -1,8 +1,19 @@
-import { React, useState } from "react";
-import { setValueInChromeStorage } from "../service/Extension";
+import { React, useEffect, useState } from "react";
+import {
+  getValueFromChromeStorage,
+  setValueInChromeStorage,
+} from "../service/Extension";
 
 function Scratchpad() {
   const [settings, setSettings] = useState({});
+
+  useEffect(() => {
+    const getSettings = async () => {
+      const storedSettings = await getValueFromChromeStorage("settings");
+      setSettings(storedSettings);
+    };
+    getSettings();
+  }, []);
   const saveSettings = (e) => {
     e.preventDefault();
     setValueInChromeStorage("settings", settings);
@@ -27,6 +38,7 @@ function Scratchpad() {
             <input
               type="date"
               id="start-date"
+              value={settings.startDate}
               onChange={(e) => onChange("startDate", e.target.value)}
             />
           </label>
@@ -35,6 +47,7 @@ function Scratchpad() {
             <input
               type="date"
               id="end-date"
+              value={settings.endDate}
               onChange={(e) => onChange("endDate", e.target.value)}
             />
           </label>
