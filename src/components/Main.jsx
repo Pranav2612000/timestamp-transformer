@@ -1,8 +1,20 @@
 import { React } from "react";
+import { setValueInChromeStorage } from "../service/Extension";
 
 function Scratchpad() {
   const saveSettings = (e) => {
     e.preventDefault();
+    const startDate = document.querySelector("#start-date").value;
+    const endDate = document.querySelector("#end-date").value;
+
+    const settings = {
+      transformDuration: {
+        startDate,
+        endDate,
+      },
+    };
+
+    setValueInChromeStorage("settings", settings);
   };
 
   return (
