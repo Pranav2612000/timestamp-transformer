@@ -1,6 +1,10 @@
 import { React } from "react";
 
 function Scratchpad() {
+  const saveSettings = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <h1> Settings </h1>
@@ -16,6 +20,12 @@ function Scratchpad() {
             End Date:
             <input type="date" id="end-date" />
           </label>
+          <br />
+          <br />
+          <br />
+          <button type="submit" onClick={saveSettings}>
+            Save
+          </button>
         </form>
       </main>
     </>
