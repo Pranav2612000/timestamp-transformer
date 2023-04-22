@@ -42,6 +42,8 @@ function Scratchpad() {
               onChange={(e) => onChange("startDate", e.target.value)}
             />
           </label>
+          <br />
+          <br />
           <label htmlFor="end-date">
             End Date:
             <input
