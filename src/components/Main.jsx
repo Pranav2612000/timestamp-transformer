@@ -1,20 +1,18 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { setValueInChromeStorage } from "../service/Extension";
 
 function Scratchpad() {
+  const [settings, setSettings] = useState({});
   const saveSettings = (e) => {
     e.preventDefault();
-    const startDate = document.querySelector("#start-date").value;
-    const endDate = document.querySelector("#end-date").value;
-
-    const settings = {
-      transformDuration: {
-        startDate,
-        endDate,
-      },
-    };
-
     setValueInChromeStorage("settings", settings);
+  };
+
+  const onChange = (key, value) => {
+    setSettings((oldSettings) => ({
+      ...oldSettings,
+      [key]: value,
+    }));
   };
 
   return (
@@ -26,11 +24,19 @@ function Scratchpad() {
           <h3>Auto transform dates between:</h3>
           <label htmlFor="start-date">
             Start Date:
-            <input type="date" id="start-date" />
+            <input
+              type="date"
+              id="start-date"
+              onChange={(e) => onChange("startDate", e.target.value)}
+            />
           </label>
           <label htmlFor="end-date">
             End Date:
-            <input type="date" id="end-date" />
+            <input
+              type="date"
+              id="end-date"
+              onChange={(e) => onChange("endDate", e.target.value)}
+            />
           </label>
           <br />
           <br />
