@@ -13,6 +13,13 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+
+  background: #f9d9d9;
+
+  margin-top: 1rem;
+  margin-left: 2rem;
+
+  font-family: Arial;
 }
 
 img, picture, video, canvas, svg {
@@ -26,6 +33,10 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+label {
+  margin-right: 2rem;
 }
 
 #root, #__next {
