@@ -10,7 +10,7 @@ function Scratchpad() {
       <h1> Settings </h1>
       <br />
       <main className="scratchpad-container">
-        <form>
+        <form onSubmit={saveSettings}>
           <h3>Auto transform dates between:</h3>
           <label htmlFor="start-date">
             Start Date:
@@ -23,7 +23,7 @@ function Scratchpad() {
           <br />
           <br />
           <br />
-          <button type="submit" onClick={saveSettings}>
+          <button type="submit" onSubmit={saveSettings}>
             Save
           </button>
         </form>
