@@ -1,4 +1,9 @@
 import { React, useEffect, useState } from "react";
+import "react-notifications/lib/notifications.css";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 import {
   getValueFromChromeStorage,
   setValueInChromeStorage,
@@ -14,9 +19,19 @@ function Scratchpad() {
     };
     getSettings();
   }, []);
-  const saveSettings = (e) => {
+  const saveSettings = async (e) => {
     e.preventDefault();
-    setValueInChromeStorage("settings", settings);
+    try {
+      await setValueInChromeStorage("settings", settings);
+      NotificationManager.success(
+        " Settings Updated! You can close the settings page now "
+      );
+    } catch (err) {
+      console.log(err);
+      NotificationManager.error(
+        "Error updating settings. Please refresh the page and try again"
+      );
+    }
   };
 
   const onChange = (key, value) => {
@@ -28,6 +43,7 @@ function Scratchpad() {
 
   return (
     <>
+      <NotificationContainer />
       <h1> Settings </h1>
       <br />
       <main className="scratchpad-container">
