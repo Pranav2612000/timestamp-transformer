@@ -1,4 +1,5 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
+import { getValueFromChromeStorage } from "./service/Extension";
 import {
   createEventListeners,
   wrapTextInSpanElement,
@@ -10,12 +11,13 @@ function loadEventHandlers() {
   createEventListeners();
 }
 
-function loadContentScript() {
+async function loadContentScript() {
   console.log("Content script loaded");
 
+  const storedSettings = await getValueFromChromeStorage("settings");
   const limits = {
-    MIN_TIMESTAMP: 1420050600000,
-    MAX_TIMESTAMP: 1893436200000,
+    MIN_TIMESTAMP: new Date(storedSettings.startDate).getTime(),
+    MAX_TIMESTAMP: new Date(storedSettings.endDate).getTime(),
   };
 
   const elements = Array.from(document.getElementsByTagName("*"));
