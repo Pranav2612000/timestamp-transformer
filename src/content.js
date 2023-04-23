@@ -33,7 +33,7 @@ function loadContentScript() {
       words.forEach((word) => {
         const timestamp = isTimestamp(word, limits);
         if (timestamp) {
-          const transformedTimestamp = transformTimestamp(timestamp);
+          const transformedTimestamp = transformTimestamp(timestamp, limits);
           const transformedTimestampElement = getTimestampElement(
             transformedTimestamp,
             timestamp

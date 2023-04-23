@@ -31,8 +31,8 @@ export function isTimestamp(string, limits) {
   return timestamp;
 }
 
-export function transformTimestamp(timestamp) {
-  if (is10DigitTimestamp) {
+export function transformTimestamp(timestamp, limits) {
+  if (is10DigitTimestamp(timestamp, limits)) {
     return new Date(timestamp * 1000).toLocaleString();
   }
 
