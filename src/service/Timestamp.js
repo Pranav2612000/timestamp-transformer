@@ -15,13 +15,8 @@ export function is10DigitTimestamp(timestamp, limits) {
   return true;
 }
 
-export function isTimestamp(string) {
+export function isTimestamp(string, limits) {
   const timestamp = parseInt(string, 10);
-  const limits = {
-    MIN_TIMESTAMP: 1420050600000,
-    MAX_TIMESTAMP: 1893436200000,
-  };
-
   if (Number.isNaN(timestamp)) {
     return false;
   }

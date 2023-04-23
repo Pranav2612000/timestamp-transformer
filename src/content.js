@@ -12,6 +12,12 @@ function loadEventHandlers() {
 
 function loadContentScript() {
   console.log("Content script loaded");
+
+  const limits = {
+    MIN_TIMESTAMP: 1420050600000,
+    MAX_TIMESTAMP: 1893436200000,
+  };
+
   const elements = Array.from(document.getElementsByTagName("*"));
 
   elements.forEach((element) => {
@@ -25,7 +31,7 @@ function loadContentScript() {
       const words = text.replace(/\n/g, " ").split(" ");
 
       words.forEach((word) => {
-        const timestamp = isTimestamp(word);
+        const timestamp = isTimestamp(word, limits);
         if (timestamp) {
           const transformedTimestamp = transformTimestamp(timestamp);
           const transformedTimestampElement = getTimestampElement(
