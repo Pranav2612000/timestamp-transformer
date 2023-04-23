@@ -1,14 +1,13 @@
-const MIN_TIMESTAMP = 1420050600000;
-const MAX_TIMESTAMP = 1893436200000;
-
-export function is13DigitTimestamp(timestamp) {
+export function is13DigitTimestamp(timestamp, limits) {
+  const { MIN_TIMESTAMP, MAX_TIMESTAMP } = limits;
   if (!(MIN_TIMESTAMP <= timestamp && timestamp <= MAX_TIMESTAMP)) {
     return false;
   }
   return true;
 }
 
-export function is10DigitTimestamp(timestamp) {
+export function is10DigitTimestamp(timestamp, limits) {
+  const { MIN_TIMESTAMP, MAX_TIMESTAMP } = limits;
   timestamp *= 1000;
   if (!(MIN_TIMESTAMP <= timestamp && timestamp <= MAX_TIMESTAMP)) {
     return false;
@@ -18,11 +17,19 @@ export function is10DigitTimestamp(timestamp) {
 
 export function isTimestamp(string) {
   const timestamp = parseInt(string, 10);
+  const limits = {
+    MIN_TIMESTAMP: 1420050600000,
+    MAX_TIMESTAMP: 1893436200000,
+  };
+
   if (Number.isNaN(timestamp)) {
     return false;
   }
 
-  if (!is13DigitTimestamp(timestamp) && !is10DigitTimestamp(timestamp)) {
+  if (
+    !is13DigitTimestamp(timestamp, limits) &&
+    !is10DigitTimestamp(timestamp, limits)
+  ) {
     return false;
   }
 
