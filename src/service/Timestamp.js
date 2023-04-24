@@ -66,10 +66,10 @@ export function isTimestamp(string, limits) {
   return timestamp;
 }
 
-export function transformTimestamp(timestamp, limits) {
+export function transformTimestamp(timestamp, limits, format) {
   if (is10DigitTimestamp(timestamp, limits)) {
-    return _formatDate(timestamp * 1000);
+    return _formatDate(timestamp * 1000, format);
   }
 
-  return _formatDate(timestamp);
+  return _formatDate(timestamp, format);
 }

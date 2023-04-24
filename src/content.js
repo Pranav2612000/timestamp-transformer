@@ -19,6 +19,7 @@ async function loadContentScript() {
     MIN_TIMESTAMP: new Date(storedSettings.startDate).getTime(),
     MAX_TIMESTAMP: new Date(storedSettings.endDate).getTime(),
   };
+  const { format } = storedSettings;
 
   const elements = Array.from(document.getElementsByTagName("*"));
 
@@ -35,7 +36,11 @@ async function loadContentScript() {
       words.forEach((word) => {
         const timestamp = isTimestamp(word, limits);
         if (timestamp) {
-          const transformedTimestamp = transformTimestamp(timestamp, limits);
+          const transformedTimestamp = transformTimestamp(
+            timestamp,
+            limits,
+            format
+          );
           const transformedTimestampElement = getTimestampElement(
             transformedTimestamp,
             timestamp
