@@ -72,6 +72,25 @@ function Scratchpad() {
           <br />
           <br />
           <br />
+          <h3>Date Format: </h3>
+          <label htmlFor="format">
+            Format: (
+            <small>
+              DD - Date, MM - Month, YYYY - Year, hh - hour, mm - minutes, ss -
+              seconds
+            </small>
+            )
+            <br />
+            <input
+              type="text"
+              id="format"
+              value={settings.format}
+              onChange={(e) => onChange("format", e.target.value)}
+            />
+          </label>
+          <br />
+          <br />
+          <br />
           <button type="submit" onSubmit={saveSettings}>
             Save
           </button>
