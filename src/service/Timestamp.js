@@ -1,3 +1,10 @@
+function _formatDate(timestamp, format) {
+  if (!format) {
+    return new Date(timestamp).toLocaleString();
+  }
+  throw new Error("Unknown format");
+}
+
 export function is13DigitTimestamp(timestamp, limits) {
   const { MIN_TIMESTAMP, MAX_TIMESTAMP } = limits;
   if (!(MIN_TIMESTAMP <= timestamp && timestamp <= MAX_TIMESTAMP)) {
@@ -33,8 +40,8 @@ export function isTimestamp(string, limits) {
 
 export function transformTimestamp(timestamp, limits) {
   if (is10DigitTimestamp(timestamp, limits)) {
-    return new Date(timestamp * 1000).toLocaleString();
+    return _formatDate(timestamp * 1000);
   }
 
-  return new Date(timestamp).toLocaleString();
+  return _formatDate(timestamp);
 }
