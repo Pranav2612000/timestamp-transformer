@@ -27,8 +27,8 @@ function _formatDate(timestamp, format) {
   dateString = dateString.replaceAll("MM", month);
   dateString = dateString.replaceAll("YYYY", year);
   dateString = dateString.replaceAll("hh", hour);
-  dateString = dateString.replaceAll("minutes", minutes);
-  dateString = dateString.replaceAll("seconds", seconds);
+  dateString = dateString.replaceAll("mm", minutes);
+  dateString = dateString.replaceAll("ss", seconds);
 
   return dateString;
 }
