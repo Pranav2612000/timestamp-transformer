@@ -75,7 +75,13 @@ export function createTooltipElementClickListener() {
   document.querySelectorAll(`.${TT_TOOLTIP_CLASS}`).forEach((ele) => {
     ele.addEventListener("click", (e) => {
       e.stopPropagation();
-      revertTimestampElementChange(e.target.parentElement);
+
+      let { parentElement } = e.target;
+      if (e.target.className === TT_CLEAR_TOOLTIP_CLASS) {
+        parentElement = e.target.parentElement.parentElement;
+      }
+
+      revertTimestampElementChange(parentElement);
     });
   });
 }
