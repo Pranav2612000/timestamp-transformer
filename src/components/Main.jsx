@@ -8,6 +8,7 @@ import {
   getValueFromChromeStorage,
   setValueInChromeStorage,
 } from "../service/Extension";
+import { validateDateFormat } from "../service/Timestamp";
 
 function Scratchpad() {
   const [settings, setSettings] = useState({});
@@ -21,6 +22,13 @@ function Scratchpad() {
   }, []);
   const saveSettings = async (e) => {
     e.preventDefault();
+
+    if (settings.format && !validateDateFormat(settings.format)) {
+      NotificationManager.error(
+        "Invalid Date format. Please update the format and try again"
+      );
+      return;
+    }
     try {
       await setValueInChromeStorage("settings", settings);
       NotificationManager.success(

@@ -1,4 +1,4 @@
-function _validateDateFormat(format) {
+export function validateDateFormat(format) {
   /* Assume all formats are valid for now */
   if (!format) {
     return false;
@@ -11,7 +11,7 @@ function _formatDate(timestamp, format) {
     return new Date(timestamp).toLocaleString();
   }
 
-  if (!_validateDateFormat) {
+  if (!validateDateFormat) {
     throw new Error("Unknown format");
   }
   const date = new Date(timestamp);
