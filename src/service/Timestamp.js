@@ -1,8 +1,20 @@
+function _validateDateFormat(format) {
+  /* Assume all formats are valid for now */
+  if (!format) {
+    return false;
+  }
+  return true;
+}
+
 function _formatDate(timestamp, format) {
   if (!format) {
     return new Date(timestamp).toLocaleString();
   }
-  throw new Error("Unknown format");
+
+  if (!_validateDateFormat) {
+    throw new Error("Unknown format");
+  }
+  throw new Error("Format Date operation failed");
 }
 
 export function is13DigitTimestamp(timestamp, limits) {
