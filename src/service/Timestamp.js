@@ -8,6 +8,21 @@ const daysOfTheWeek = [
   "Saturday",
 ];
 
+const monthsOfTheYear = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 const formatSpecifiers = [
   { pattern: "DDDD", extractor: (date) => daysOfTheWeek[date.getDay()] }, // E.g Monday
   {
@@ -15,6 +30,10 @@ const formatSpecifiers = [
     extractor: (date) => daysOfTheWeek[date.getDay()].substr(0, 3),
   }, // E.g Mon
   { pattern: "DD", extractor: (date) => date.getDate() },
+  {
+    pattern: "MMMM",
+    extractor: (date) => monthsOfTheYear[date.getMonth() + 1],
+  }, // E.g January
   { pattern: "MM", extractor: (date) => date.getMonth() + 1 },
   { pattern: "YYYY", extractor: (date) => date.getFullYear() },
   { pattern: "YY", extractor: (date) => date.getFullYear() % 100 },
