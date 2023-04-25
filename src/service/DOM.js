@@ -1,6 +1,6 @@
 import Utils from "./Utils";
 
-const TT_CONTAINER_CLASS = "tt-container";
+export const TT_CONTAINER_CLASS = "tt-container";
 const TT_TOOLTIP_CLASS = "tt-tooltip";
 const TT_CLEAR_TOOLTIP_CLASS = "tt-clear-tooltip";
 

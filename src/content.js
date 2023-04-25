@@ -2,13 +2,36 @@
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
 import { getValueFromChromeStorage } from "./service/Extension";
 import {
+  TT_CONTAINER_CLASS,
   createEventListeners,
   wrapTextInSpanElement,
+  revertTimestampElementChange,
   getTimestampElement,
 } from "./service/DOM";
 
 function undoAllTransforms() {
   console.log("Undoing all transforms");
+
+  const elements = Array.from(document.getElementsByTagName("*"));
+
+  elements.forEach((element) => {
+    const { childNodes } = element;
+
+    childNodes.forEach((node) => {
+      if (node.nodeType !== 1) {
+        return;
+      }
+
+      if (!node.classList) {
+        return;
+      }
+
+      if (!Array.from(node.classList).includes(TT_CONTAINER_CLASS)) {
+        return;
+      }
+      revertTimestampElementChange(node);
+    });
+  });
 }
 
 function loadEventHandlers() {
