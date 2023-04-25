@@ -1,5 +1,16 @@
+const daysOfTheWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 const formatSpecifiers = [
   { pattern: "DD", extractor: (date) => date.getDate() },
+  { pattern: "DDD", extractor: (date) => daysOfTheWeek[date.getDay()] },
   { pattern: "MM", extractor: (date) => date.getMonth() + 1 },
   { pattern: "YYYY", extractor: (date) => date.getFullYear() },
   { pattern: "YY", extractor: (date) => date.getFullYear() % 100 },
