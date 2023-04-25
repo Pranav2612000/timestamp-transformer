@@ -1,3 +1,4 @@
+/* global chrome */
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
 import { getValueFromChromeStorage } from "./service/Extension";
 import {
@@ -5,6 +6,10 @@ import {
   wrapTextInSpanElement,
   getTimestampElement,
 } from "./service/DOM";
+
+function undoAllTransforms() {
+  console.log("Undoing all transforms");
+}
 
 function loadEventHandlers() {
   console.log("Load event handlers for handling events using delegation");
@@ -64,5 +69,20 @@ async function loadContentScript() {
   loadEventHandlers();
 }
 
+const loadMessageHandlers = () => {
+  chrome.runtime.onMessage.addListener(function (request) {
+    switch (request.operation) {
+      case "UNDO_ALL": {
+        undoAllTransforms();
+        break;
+      }
+
+      default:
+        break;
+    }
+  });
+};
+
 loadEventHandlers();
 loadContentScript();
+loadMessageHandlers();
