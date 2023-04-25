@@ -1,3 +1,4 @@
+/* global chrome */
 import { removeAllContextMenus, addContextMenus } from "./service/Extension";
 
 const initializeContextMenus = async () => {
@@ -8,6 +9,21 @@ const initializeContextMenus = async () => {
       id: "UNDO_ALL",
     },
   ]);
+
+  chrome.contextMenus.onClicked.addListener(async (info) => {
+    switch (info.menuItemId) {
+      case "UNDO_ALL": {
+        const queryOptions = { active: true, currentWindow: true };
+
+        const tabs = await chrome.tabs.query(queryOptions);
+        chrome.tabs.sendMessage(tabs[0].id, { operation: "UNDO_ALL" });
+        break;
+      }
+
+      default:
+        break;
+    }
+  });
 
   console.log("Context Menus created successfully");
 };
