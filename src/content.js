@@ -34,14 +34,7 @@ function undoAllTransforms() {
   });
 }
 
-function loadEventHandlers() {
-  console.log("Load event handlers for handling events using delegation");
-  createEventListeners();
-}
-
-async function loadContentScript() {
-  console.log("Content script loaded");
-
+async function transformAll() {
   const storedSettings = await getValueFromChromeStorage("settings");
   const limits = {
     MIN_TIMESTAMP: new Date(storedSettings.startDate).getTime(),
@@ -88,6 +81,16 @@ async function loadContentScript() {
       });
     });
   });
+}
+
+function loadEventHandlers() {
+  console.log("Load event handlers for handling events using delegation");
+  createEventListeners();
+}
+
+async function loadContentScript() {
+  console.log("Content script loaded");
+  transformAll();
 
   loadEventHandlers();
 }
