@@ -8,6 +8,10 @@ const initializeContextMenus = async () => {
       title: "Undo all transforms",
       id: "UNDO_ALL",
     },
+    {
+      title: "(Re)Transform all on page",
+      id: "TRANSFORM_ALL",
+    },
   ]);
 
   chrome.contextMenus.onClicked.addListener(async (info) => {
@@ -17,6 +21,13 @@ const initializeContextMenus = async () => {
 
         const tabs = await chrome.tabs.query(queryOptions);
         chrome.tabs.sendMessage(tabs[0].id, { operation: "UNDO_ALL" });
+        break;
+      }
+      case "TRANSFORM_ALL": {
+        const queryOptions = { active: true, currentWindow: true };
+
+        const tabs = await chrome.tabs.query(queryOptions);
+        chrome.tabs.sendMessage(tabs[0].id, { operation: "TRANSFORM_ALL" });
         break;
       }
 
