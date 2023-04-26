@@ -9,6 +9,10 @@ import {
   getTimestampElement,
 } from "./service/DOM";
 
+async function isExtensionEnabledForThisSite() {
+  return true;
+}
+
 function undoAllTransforms() {
   console.log("Undoing all transforms");
 
@@ -35,6 +39,12 @@ function undoAllTransforms() {
 }
 
 async function transformAll() {
+  const isExtensionEnabled = await isExtensionEnabledForThisSite();
+  if (!isExtensionEnabled) {
+    console.log("Extension not enabled for this site. Exiting...");
+    console.log("You can go to Extension Options to enable it again");
+    return;
+  }
   const storedSettings = await getValueFromChromeStorage("settings");
   const limits = {
     MIN_TIMESTAMP: new Date(storedSettings.startDate).getTime(),
