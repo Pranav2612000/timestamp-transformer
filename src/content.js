@@ -1,6 +1,9 @@
 /* global chrome */
 import { isTimestamp, transformTimestamp } from "./service/Timestamp";
-import { getValueFromChromeStorage } from "./service/Extension";
+import {
+  getValueFromChromeStorage,
+  setValueInChromeStorage,
+} from "./service/Extension";
 import {
   TT_CONTAINER_CLASS,
   createEventListeners,
@@ -19,6 +22,22 @@ async function isExtensionEnabledForThisSite() {
     return false;
   }
   return true;
+}
+
+async function disableExtensionForThisSite() {
+  const storedSettings = await getValueFromChromeStorage("settings");
+  const { blacklistedSites = [] } = storedSettings;
+
+  const currentUrl = window.location.href;
+
+  if (blacklistedSites.includes(currentUrl)) {
+    console.log("Site already blacklisted. Not blacklisting it again");
+    return;
+  }
+
+  blacklistedSites.push(currentUrl);
+  storedSettings.blacklistedSites = blacklistedSites;
+  await setValueInChromeStorage("settings", storedSettings);
 }
 
 function undoAllTransforms() {
@@ -123,6 +142,11 @@ const loadMessageHandlers = () => {
 
       case "TRANSFORM_ALL": {
         transformAll();
+        break;
+      }
+
+      case "DISABLE_FOR_THIS_SITE": {
+        disableExtensionForThisSite();
         break;
       }
 
