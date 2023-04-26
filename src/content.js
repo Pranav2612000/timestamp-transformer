@@ -103,6 +103,11 @@ const loadMessageHandlers = () => {
         break;
       }
 
+      case "TRANSFORM_ALL": {
+        transformAll();
+        break;
+      }
+
       default:
         break;
     }
