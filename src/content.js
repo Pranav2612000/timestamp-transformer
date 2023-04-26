@@ -10,6 +10,14 @@ import {
 } from "./service/DOM";
 
 async function isExtensionEnabledForThisSite() {
+  const storedSettings = await getValueFromChromeStorage("settings");
+  const { blacklistedSites = [] } = storedSettings;
+
+  const currentUrl = window.location.href;
+
+  if (blacklistedSites.includes(currentUrl)) {
+    return false;
+  }
   return true;
 }
 
