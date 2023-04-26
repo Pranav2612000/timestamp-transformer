@@ -12,6 +12,10 @@ const initializeContextMenus = async () => {
       title: "(Re)Transform all on page",
       id: "TRANSFORM_ALL",
     },
+    {
+      title: "Disable extension for this site",
+      id: "DISABLE_FOR_THIS_SITE",
+    },
   ]);
 
   chrome.contextMenus.onClicked.addListener(async (info) => {
@@ -28,6 +32,15 @@ const initializeContextMenus = async () => {
 
         const tabs = await chrome.tabs.query(queryOptions);
         chrome.tabs.sendMessage(tabs[0].id, { operation: "TRANSFORM_ALL" });
+        break;
+      }
+      case "DISABLE_FOR_THIS_SITE": {
+        const queryOptions = { active: true, currentWindow: true };
+
+        const tabs = await chrome.tabs.query(queryOptions);
+        chrome.tabs.sendMessage(tabs[0].id, {
+          operation: "DISABLE_FOR_THIS_SITE",
+        });
         break;
       }
 
