@@ -25,7 +25,9 @@ async function isExtensionEnabledForThisSite() {
 
   const currentUrl = window.location.href;
 
-  if (blacklistedSites.includes(currentUrl)) {
+  if (
+    blacklistedSites.some((site) => currentUrl.match(new RegExp(site)) != null)
+  ) {
     return false;
   }
   return true;
@@ -45,7 +47,9 @@ async function disableExtensionForThisSite() {
 
   const currentUrl = window.location.href;
 
-  if (blacklistedSites.includes(currentUrl)) {
+  if (
+    blacklistedSites.some((site) => currentUrl.match(new RegExp(site)) != null)
+  ) {
     console.log("Site already blacklisted. Not blacklisting it again");
     return;
   }
