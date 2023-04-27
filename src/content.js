@@ -12,6 +12,10 @@ import {
   getTimestampElement,
 } from "./service/DOM";
 
+const DEFAULT_MIN_TIMESTAMP = 1420050600000;
+const DEFAULT_MAX_TIMESTAMP = 1893436200000;
+const DEFAULT_DATE_FORMAT = "DD/MM/YYYY hh:mm:ss";
+
 async function isExtensionEnabledForThisSite() {
   const storedSettings = await getValueFromChromeStorage("settings");
   const { blacklistedSites = [] } = storedSettings;
@@ -74,10 +78,14 @@ async function transformAll() {
   }
   const storedSettings = await getValueFromChromeStorage("settings");
   const limits = {
-    MIN_TIMESTAMP: new Date(storedSettings.startDate).getTime(),
-    MAX_TIMESTAMP: new Date(storedSettings.endDate).getTime(),
+    MIN_TIMESTAMP: storedSettings?.startDate
+      ? new Date(storedSettings.startDate).getTime()
+      : DEFAULT_MIN_TIMESTAMP,
+    MAX_TIMESTAMP: storedSettings?.endDate
+      ? new Date(storedSettings.endDate).getTime()
+      : DEFAULT_MAX_TIMESTAMP,
   };
-  const { format } = storedSettings;
+  const format = storedSettings?.format ?? DEFAULT_DATE_FORMAT;
 
   const elements = Array.from(document.getElementsByTagName("*"));
 
