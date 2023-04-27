@@ -1,12 +1,16 @@
-- Settings: Allow user to choose minimum and maximum dates for auto changing timestamps
-- Settings: Allow user to configure date format of converted timestamps
-- Settings: Allow user to disable extension on certain sites
+- [DONE] Settings: Allow user to choose minimum and maximum dates for auto changing timestamps
+- [DONE] Settings: Allow user to configure date format of converted timestamps
+- [DONE] Settings: Allow user to disable extension on certain sites
+- Settings: Allow user to choose timezone 
 - [DONE] Easily show actual timestamp value to user - Shown on hover
 - [DONE] Allow user to easily undo a change - Clicking on the element
 - [DONE] Support for 10 digit timestamps
-- Don't change inside code tag
+- [DONE] Undefined visible when trying to revert changes by clicking on 'Click to revert' tooltip
+- [v1] Don't change inside code tag
 - [v1] Transform date to a smaller size to not cause layout shift
-- Clicking on popup opens context menu
-- Context Menu: Add transform all on page
-- Context Menu: Add `Undo all transforms` from page
-- Context Menu: Add disable extension for this page
+- [DONE] Clicking on popup opens context menu
+- [DONE] Context Menu: Add transform all on page
+- [DONE] Context Menu: Add `Undo all transforms` from page
+- [DONE] Context Menu: Add disable extension for this page
+- [DONE] Feedback when options have been successfully
+- Test by deleting and re-installing the extension ( for controlled/uncontroleld inputs)
