@@ -146,7 +146,7 @@ function loadEventHandlers() {
 
 async function loadContentScript() {
   console.log("Content script loaded");
-  transformAll();
+  await transformAll();
 
   loadEventHandlers();
 }
