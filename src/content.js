@@ -19,6 +19,9 @@ const DEFAULT_DATE_FORMAT = "DD/MM/YYYY hh:mm:ss";
 async function isExtensionEnabledForThisSite() {
   const storedSettings = await getValueFromChromeStorage("settings");
   const blacklistedSitesString = storedSettings?.blacklistedSites ?? "";
+  const blacklistedSites = blacklistedSitesString
+    .replaceAll(" ", "")
+    .split(",");
 
   const currentUrl = window.location.href;
 
@@ -36,6 +39,9 @@ async function disableExtensionForThisSite() {
   }
 
   const { blacklistedSites: blacklistedSitesString = "" } = storedSettings;
+  const blacklistedSites = blacklistedSitesString
+    ? blacklistedSitesString.replaceAll(" ", "").split(",")
+    : [];
 
   const currentUrl = window.location.href;
 
@@ -45,7 +51,7 @@ async function disableExtensionForThisSite() {
   }
 
   blacklistedSites.push(currentUrl);
-  storedSettings.blacklistedSites = blacklistedSites;
+  storedSettings.blacklistedSites = blacklistedSites.join(", ");
   await setValueInChromeStorage("settings", storedSettings);
 }
 
