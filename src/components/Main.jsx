@@ -16,7 +16,7 @@ function Scratchpad() {
   useEffect(() => {
     const getSettings = async () => {
       const storedSettings = await getValueFromChromeStorage("settings");
-      setSettings(storedSettings);
+      setSettings(storedSettings ?? {});
     };
     getSettings();
   }, []);
