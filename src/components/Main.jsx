@@ -99,6 +99,21 @@ function Scratchpad() {
           <br />
           <br />
           <br />
+          <h3>Blacklisted Sites: </h3>
+          <label htmlFor="blacklistedSites">
+            URLs: (
+            <small> Enter comma seperated values, * for wildcards </small>
+            )
+            <br />
+            <textarea
+              id="blacklistedSites"
+              value={settings.blacklistedSites}
+              onChange={(e) => onChange("blacklistedSites", e.target.value)}
+            />
+          </label>
+          <br />
+          <br />
+          <br />
           <button type="submit" onSubmit={saveSettings}>
             Save
           </button>
