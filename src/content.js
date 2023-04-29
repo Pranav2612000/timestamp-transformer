@@ -19,6 +19,11 @@ const DEFAULT_DATE_FORMAT = "DD/MM/YYYY hh:mm:ss";
 async function isExtensionEnabledForThisSite() {
   const storedSettings = await getValueFromChromeStorage("settings");
   const blacklistedSitesString = storedSettings?.blacklistedSites ?? "";
+
+  if (!blacklistedSitesString) {
+    return true;
+  }
+
   const blacklistedSites = blacklistedSitesString
     .replaceAll(" ", "")
     .split(",");
