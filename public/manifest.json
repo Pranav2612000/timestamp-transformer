@@ -2,7 +2,7 @@
   "short_name": "timestamp transformer",
   "name": "timestamp transformer",
   "description": "A extension to autoconvert timestamps on a page to human readable format",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "icons": {
     "16": "logo.png",
